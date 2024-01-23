@@ -16,3 +16,17 @@ dependencies {
     testImplementation libs.kotlin.reflect
     testImplementation libs.assertJ
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.MohammadFakhraee'
+                artifactId = 'scarlet-message-adapter-moshi'
+                version = '0.1.13'
+
+                from components.java
+            }
+        }
+    }
+}

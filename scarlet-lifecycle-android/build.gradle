@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.vanniktech.maven.publish'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -19,6 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -31,4 +38,16 @@ dependencies {
     testImplementation libs.junit
 }
 
-apply plugin: 'com.vanniktech.maven.publish'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.MohammadFakhraee'
+                artifactId = 'scarlet-lifecycle-android'
+                version = '0.1.13'
+
+                from components.release
+            }
+        }
+    }
+}
