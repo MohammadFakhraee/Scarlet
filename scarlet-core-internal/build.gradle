@@ -8,7 +8,6 @@ dependencies {
     implementation libs.rxJava
     implementation libs.kotlin.stdlib
 
-    testImplementation project(':scarlet-test-utils')
     testImplementation libs.junit
     testImplementation libs.mockito
     testImplementation libs.kotlin.reflect

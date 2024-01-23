@@ -1,7 +1,6 @@
 include ':scarlet-core'
 include ':scarlet-core-internal'
 include ':scarlet'
-include ':scarlet-test-utils'
 include ':scarlet-message-adapter-builtin'
 include ':scarlet-stream-adapter-builtin'
 include ':scarlet-websocket-okhttp'
