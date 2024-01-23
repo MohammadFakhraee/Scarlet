@@ -1,6 +1,8 @@
-apply plugin: 'kotlin'
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'kotlin'
+    id 'java-library'
+    id 'maven-publish'
+}
 
 dependencies {
     compileOnly project(':scarlet')
@@ -13,13 +15,14 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-test-utils'
-                version = '0.1.13'
+                version = '0.0.1'
 
                 from components.java
             }

@@ -20,6 +20,7 @@ dependencies {
     testImplementation libs.kotlinx.coroutines.test
     testImplementation libs.truth
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -31,7 +32,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-stream-adapter-coroutines'
-                version = '0.1.13'
+                version = '0.0.1'
 
                 from components.java
             }

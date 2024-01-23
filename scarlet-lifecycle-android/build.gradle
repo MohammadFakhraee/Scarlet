@@ -3,15 +3,12 @@ plugins {
     id 'kotlin-android'
     id 'maven-publish'
 }
-
 android {
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
         minSdkVersion versions.minSdkVersionAndroidLifecycle
         targetSdkVersion versions.targetSdkVersion
-        versionCode 1
-        versionName "${version}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,10 +26,6 @@ android {
         }
     }
 }
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
 
 dependencies {
     implementation project(':scarlet')
@@ -48,11 +41,12 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'com.github.MohammadFakhraee'
-                artifactId = 'scarlet-lifecycle-android'
-                version = '0.1.13'
-
                 from components.release
+            }
+        }
+        repositories {
+            maven {
+                url = mavenLocal().url
             }
         }
     }

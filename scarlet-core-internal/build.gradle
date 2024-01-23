@@ -10,6 +10,7 @@ dependencies {
     implementation libs.rxJava
     implementation libs.kotlin.stdlib
 
+    testImplementation project(':scarlet-test-utils')
     testImplementation libs.junit
     testImplementation libs.mockito
     testImplementation libs.kotlin.reflect
@@ -26,7 +27,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-core-internal'
-                version = '0.1.13'
+                version = '0.0.1'
 
                 from components.java
             }

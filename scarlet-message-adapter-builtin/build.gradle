@@ -14,6 +14,7 @@ dependencies {
     testImplementation libs.kotlin.reflect
     testImplementation libs.assertJ
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -25,7 +26,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-message-adapter-builtin'
-                version = '0.1.13'
+                version = '0.0.1'
 
                 from components.java
             }
