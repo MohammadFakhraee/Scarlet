@@ -29,7 +29,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-message-adapter-protobuf'
-                version = '0.0.1'
+                version = '1.0.0'
 
                 from components.java
             }

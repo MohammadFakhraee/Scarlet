@@ -32,7 +32,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-websocket-okhttp'
-                version = '0.0.1'
+                version = '1.0.0'
 
                 from components.java
             }
