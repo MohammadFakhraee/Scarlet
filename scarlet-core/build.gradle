@@ -1,6 +1,8 @@
-apply plugin: 'kotlin'
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'kotlin'
+    id 'java-library'
+    id 'maven-publish'
+}
 
 dependencies {
     api libs.reactiveStreams

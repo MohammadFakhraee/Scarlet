@@ -1,6 +1,8 @@
-apply plugin: 'kotlin'
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'kotlin'
+    id 'java-library'
+    id 'maven-publish'
+}
 
 dependencies {
     api libs.rxJava
@@ -10,6 +12,7 @@ dependencies {
 
     testImplementation project(':scarlet')
     testImplementation project(':scarlet-websocket-mockwebserver')
+    testImplementation project(':scarlet-test-utils')
     testImplementation libs.junit
     testImplementation libs.mockito
     testImplementation libs.kotlin.reflect
