@@ -17,6 +17,10 @@ dependencies {
     testImplementation libs.assertJ
     testImplementation libs.jackson.moduleKotlin
 }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 afterEvaluate {
     publishing {

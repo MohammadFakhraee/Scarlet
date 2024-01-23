@@ -13,6 +13,10 @@ dependencies {
 subprojects {
     tasks.withType(Javadoc).all { enabled = false }
 }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 afterEvaluate {
     publishing {
