@@ -20,7 +20,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.MohammadFakhraee'
                 artifactId = 'scarlet-websocket-mockwebserver'
-                version = '1.0.1'
+                version = '1.0.2-alpha.01'
 
                 from components.java
             }

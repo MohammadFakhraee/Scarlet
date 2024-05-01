@@ -61,7 +61,7 @@ interface GdaxComponent {
                 .add(KotlinJsonAdapterFactory())
                 .build()
             val scarlet = Scarlet.Builder()
-                .webSocketFactory(client.newWebSocketFactory("wss://ws-feed.gdax.com"))
+                .webSocketFactory(client.newWebSocketFactory("wss:/stream-testnet.bybit.com/v5/public/spot"))
                 .lifecycle(lifecycle)
                 .addMessageAdapterFactory(MoshiMessageAdapter.Factory(moshi))
                 .addStreamAdapterFactory(RxJava2StreamAdapterFactory())

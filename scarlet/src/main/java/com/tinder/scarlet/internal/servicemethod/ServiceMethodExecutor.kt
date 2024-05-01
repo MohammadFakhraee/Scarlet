@@ -41,9 +41,9 @@ internal class ServiceMethodExecutor(
 
         private fun Method.toServiceMethod(connection: Connection): ServiceMethod {
             val serviceMethodFactories = annotations.mapNotNull { it.findServiceMethodFactory() }
-            require(serviceMethodFactories.size == 1) {
+            /*require(serviceMethodFactories.size == 1) {
                 "A method must have one and only one service method annotation: $this"
-            }
+            }*/
             return serviceMethodFactories.first().create(connection, this)
         }
 
