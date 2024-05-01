@@ -35,7 +35,7 @@ ext.versions = [
     jodaTime: '2.9.9',
     glide: '4.12.0',
 
-    okHttp: '4.9.1',
+    okHttp: '5.0.0-alpha.14',
     okio: '1.13.0',
     timber: '4.6.0',
     okSse: '0.9.0',
