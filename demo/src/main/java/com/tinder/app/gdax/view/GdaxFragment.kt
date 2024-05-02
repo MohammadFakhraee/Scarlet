@@ -24,9 +24,6 @@ import com.tinder.app.gdax.domain.Transaction
 import com.tinder.app.gdax.inject.GdaxComponent
 import com.tinder.app.gdax.presenter.GdaxPresenter
 import com.tinder.app.gdax.target.GdaxTarget
-import org.joda.time.DateTime
-import org.joda.time.LocalTime
-import org.joda.time.format.DateTimeFormat
 import java.text.DecimalFormat
 import javax.inject.Inject
 
@@ -43,7 +40,7 @@ class GdaxFragment : Fragment(), GdaxTarget {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        (context!!.applicationContext as GdaxComponent.ComponentProvider).gdaxComponent
+        (requireContext().applicationContext as GdaxComponent.ComponentProvider).gdaxComponent
             .inject(this)
 
         val view = inflater.inflate(R.layout.fragment_gdax, container, false) as View
@@ -80,17 +77,17 @@ class GdaxFragment : Fragment(), GdaxTarget {
         val chartTitle = "$product-USD"
         menu?.findItem(CURRENCIES_SUB_MENU_ID)?.title = chartTitle
 
-        val now = DateTime.now()
-        val minutesAgo = now.minusMinutes(DISPLAYED_HISTORY_DURATION_MINUTES)
+        val now = System.currentTimeMillis()
+        val minutesAgo = now - DISPLAYED_HISTORY_DURATION_MINUTES * 60_000
 
         val priceEntries = transactions
-            .filter { it.timestamp.isAfter(minutesAgo) }
-            .map { Entry(it.timestamp.millisOfDay.toFloat(), it.price) }
+            .filter { it.timestamp > minutesAgo }
+            .map { Entry(it.timestamp.toFloat(), it.price) }
             .toMutableList()
             .apply {
                 add(
                     0,
-                    Entry(minutesAgo.millisOfDay.toFloat(), if (isEmpty()) 0F else this[0].y)
+                    Entry(minutesAgo.toFloat(), if (isEmpty()) 0F else this[0].y)
                 )
             }
         val priceLineDataSet = LineDataSet(priceEntries, chartTitle)
@@ -103,8 +100,8 @@ class GdaxFragment : Fragment(), GdaxTarget {
 
         val minPrice = priceEntries.minByOrNull { it.y }?.y ?: 0F
         val minPriceEntries = listOf(
-            Entry(minutesAgo.millisOfDay.toFloat(), minPrice),
-            Entry(now.millisOfDay.toFloat(), minPrice)
+            Entry(minutesAgo.toFloat(), minPrice),
+            Entry(now.toFloat(), minPrice)
         )
         val minPriceLineDataSet = LineDataSet(minPriceEntries, MIN_DATA_SET_LABEL)
             .apply {
@@ -121,7 +118,7 @@ class GdaxFragment : Fragment(), GdaxTarget {
             axisRight.isEnabled = false
             with(xAxis) {
                 setValueFormatter { value, _ ->
-                    LocalTime.fromMillisOfDay(value.toLong()).toString(DateTimeFormat.shortTime())
+                    value.toLong().toString()
                 }
                 position = XAxis.XAxisPosition.BOTTOM
                 setDrawGridLines(false)

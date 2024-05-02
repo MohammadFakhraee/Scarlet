@@ -17,7 +17,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import org.joda.time.DateTime
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
@@ -73,7 +72,7 @@ class ChatMessageRepository @Inject constructor(
                     generateMessageId(),
                     text,
                     ChatMessage.Source.RECEIVED,
-                    DateTime.now().plusMillis(50)
+                    System.currentTimeMillis() + 50
                 )
                 addChatMessage(chatMessage)
             }.catch { e ->
@@ -86,7 +85,7 @@ class ChatMessageRepository @Inject constructor(
                     generateMessageId(),
                     bitmap,
                     ChatMessage.Source.RECEIVED,
-                    DateTime.now().plusMillis(50)
+                    System.currentTimeMillis() + 50
                 )
                 addChatMessage(chatMessage)
             }.catch { e ->

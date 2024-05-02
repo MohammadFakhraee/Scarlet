@@ -4,9 +4,8 @@
 
 package com.tinder.app.gdax.domain
 
-import org.joda.time.DateTime
 
 data class Transaction(
     val price: Float,
-    val timestamp: DateTime
+    val timestamp: Long
 )

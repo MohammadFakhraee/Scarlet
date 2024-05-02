@@ -25,8 +25,7 @@ import com.tinder.app.echo.domain.ChatMessage
 import com.tinder.app.echo.inject.EchoBotComponent
 import com.tinder.app.echo.presenter.EchoBotPresenter
 import com.tinder.app.echo.target.EchoBotTarget
-import droidninja.filepicker.FilePickerBuilder
-import droidninja.filepicker.FilePickerConst
+import java.util.Calendar
 import java.util.Locale
 import javax.inject.Inject
 
@@ -105,19 +104,19 @@ class EchoBotFragment : Fragment(), EchoBotTarget {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            FilePickerConst.REQUEST_CODE_PHOTO -> {
-                if (resultCode != Activity.RESULT_OK || data == null) {
-                    return
-                }
-                val photoPaths = mutableListOf<String>()
-                photoPaths.addAll(
-                    requireNotNull(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA))
-                )
-                if (photoPaths.isEmpty()) {
-                    return
-                }
-                presenter.sendImage(photoPaths[0])
-            }
+//            FilePickerConst.REQUEST_CODE_PHOTO -> {
+//                if (resultCode != Activity.RESULT_OK || data == null) {
+//                    return
+//                }
+//                val photoPaths = mutableListOf<String>()
+//                photoPaths.addAll(
+//                    requireNotNull(data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA))
+//                )
+//                if (photoPaths.isEmpty()) {
+//                    return
+//                }
+//                presenter.sendImage(photoPaths[0])
+//            }
         }
     }
 
@@ -157,9 +156,9 @@ class EchoBotFragment : Fragment(), EchoBotTarget {
     }
 
     private fun showImagePicker() {
-        FilePickerBuilder.instance.setMaxCount(1)
-            .setActivityTheme(R.style.AppTheme)
-            .pickPhoto(this)
+//        FilePickerBuilder.instance.setMaxCount(1)
+//            .setActivityTheme(R.style.AppTheme)
+//            .pickPhoto(this)
     }
 
     companion object {
@@ -179,7 +178,7 @@ class EchoBotFragment : Fragment(), EchoBotTarget {
         private val SCARLET_USER = ChatUser(1, "Scarlet", AVATAR)
 
         private fun ChatMessage.toMessage(): Message = Message.Builder()
-            .setSendTime(timestamp.toCalendar(Locale.getDefault()))
+            .setSendTime(Calendar.getInstance(Locale.getDefault()).apply {this.time.time = timestamp })
             .apply {
                 when (this@toMessage) {
                     is ChatMessage.Text -> setText(value)

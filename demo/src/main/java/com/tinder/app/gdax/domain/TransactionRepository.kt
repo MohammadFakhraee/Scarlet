@@ -11,7 +11,6 @@ import com.tinder.app.gdax.inject.GdaxScope
 import com.tinder.scarlet.WebSocket
 import io.reactivex.Flowable
 import io.reactivex.processors.BehaviorProcessor
-import org.joda.time.format.ISODateTimeFormat
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
@@ -48,8 +47,7 @@ class TransactionRepository @Inject constructor(
                     ProductId.LTC_USD -> Product.LTC
                 }
                 val price = ticker.price.toFloat()
-                val time = ISODateTimeFormat.dateTime().parseDateTime(ticker.time)
-                product to Transaction(price, time)
+                product to Transaction(price, ticker.time.toLong())
             }
             .subscribe({ (product, transaction) ->
                 addTransaction(product, transaction)

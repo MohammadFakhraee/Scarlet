@@ -26,6 +26,16 @@
     **[] $VALUES;
     public *;
 }
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+ <init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+  *** rewind();
+}
 # support-v7-appcompat
 -keep public class android.support.v7.widget.** { *; }
 -keep public class android.support.v7.internal.widget.** { *; }
@@ -33,6 +43,14 @@
 -keep public class * extends android.support.v4.view.ActionProvider {
     public <init>(android.content.Context);
 }
+-keep interface com.tinder.** { *; }
+-keep class com.tinder.** { *; }
+#-if interface * { @com.tinder.scarlet.ws.* <methods>; }
+#-keep,allowobfuscation interface <1>
+#
+#-keepclassmembers,allowshrinking,allowobfuscation interface * {
+#    @com.tinder.scarlet.ws.* <methods>;
+#}
 # support-design
 -dontwarn android.support.design.**
 -keep class android.support.design.** { *; }
