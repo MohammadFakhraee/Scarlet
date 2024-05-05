@@ -43,14 +43,14 @@
 -keep public class * extends android.support.v4.view.ActionProvider {
     public <init>(android.content.Context);
 }
--keep interface com.tinder.** { *; }
--keep class com.tinder.** { *; }
-#-if interface * { @com.tinder.scarlet.ws.* <methods>; }
-#-keep,allowobfuscation interface <1>
-#
-#-keepclassmembers,allowshrinking,allowobfuscation interface * {
-#    @com.tinder.scarlet.ws.* <methods>;
-#}
+
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+-if interface * { @com.tinder.scarlet.ws.* <methods>; }
+-keep,allowobfuscation interface <1>
+
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @com.tinder.scarlet.ws.* <methods>;
+}
 # support-design
 -dontwarn android.support.design.**
 -keep class android.support.design.** { *; }
